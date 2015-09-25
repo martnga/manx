@@ -15,8 +15,7 @@ import retrofit.http.Query;
 //Methods declared on the interface represent a single remote API endpoint.
 //Annotations describe how the method maps to an HTTP request.
 //The library makes downloading JSON or XML data from a web API straightforward.
-//Once the data is downloaded, it is parsed into a Plain Old Java Object (POJO)
-// which must be defined for each resource in the response
+//Once the data is downloaded, it is parsed into a Plain Old Java Object (POJO) which must be defined for each resource in the response
 
 
 public interface SCService {

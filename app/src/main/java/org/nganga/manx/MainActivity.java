@@ -43,12 +43,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mPlayerControl = (ImageView)findViewById(R.id.player_control);
+        mPlayerControl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                togglePlayPause();
+            }
+        });
+
         mMediaPlayer = new MediaPlayer();
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 togglePlayPause();
+            }
+
+        });
+
+        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mPlayerControl.setImageResource(R.drawable.ic_play_arrow_black_24dp);
             }
         });
 
@@ -132,6 +147,19 @@ public class MainActivity extends AppCompatActivity {
         } else {
             mMediaPlayer.start();
             mPlayerControl.setImageResource(R.drawable.ic_pause_circle_outline_black_24dp);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (mMediaPlayer != null) {
+            if (mMediaPlayer.isPlaying()) {
+                mMediaPlayer.stop();
+            }
+            mMediaPlayer.release();
+            mMediaPlayer = null;
         }
     }
 }
