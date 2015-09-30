@@ -9,7 +9,7 @@
         android:id="@+id/track_list_view"
         android:layout_weight="100"
         android:divider="@color/divider"
-        android:dividerHeight="4dp"
+        android:dividerHeight="1dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"/>
 
